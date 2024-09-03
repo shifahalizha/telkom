@@ -49,7 +49,7 @@
 
 						<nav class="main-nav visible-md visible-lg">
 							<ul class="sf-menu">
-								<li class="active"><a href="index.html">Home</a></li>
+								<li class="active"><a href="index.html">Homeeeee</a></li>
 								<li><a href="#">Minimum Stock ONT</a>
 									<ul>
 										<li><a href="portfolio.html">Rekap Minimum Stock ONT</a></li>
