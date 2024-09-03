@@ -4,6 +4,131 @@
 <head>
 	<?= $this->include('layout/headmedigo') ?>
 	<?= $this->include('layout/headklassy') ?>
+	<style>
+		body {
+			font-family: 'Roboto', sans-serif;
+			margin: 0;
+			padding: 0;
+			background: #f4f4f4;
+		}
+
+		/* Table Section */
+		.table-section {
+			padding: 40px 20px;
+			background: #fff;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		/* Heading */
+		h2 {
+			font-size: 28px;
+			margin-bottom: 20px;
+			color: #333;
+		}
+
+		/* Table Wrapper */
+		.table-wrapper {
+			overflow: auto;
+			/* Allows both horizontal and vertical scrolling */
+			-webkit-overflow-scrolling: touch;
+			/* Smooth scrolling on touch devices */
+		}
+
+		/* Table Styles */
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			border-radius: 8px;
+			overflow: hidden;
+			background: #fff;
+			font-size: 12px;
+			text-align: center;
+			/* Reduced font size */
+		}
+
+		.table-container {
+			max-height: 400px;
+			/* Atur tinggi maksimum kontainer tabel */
+			overflow-y: auto;
+			/* Tambahkan scroll vertikal jika konten melebihi tinggi */
+			border: 1px solid #ddd;
+			/* Tambahkan border di sekitar kontainer */
+			border-radius: 8px;
+			/* Rounded corners */
+		}
+
+
+		thead {
+			background-color: #333;
+			color: #fff;
+		}
+
+		thead th {
+			padding: 12px;
+			/* Adjusted padding for smaller font size */
+			text-align: left;
+			font-weight: 600;
+			text-transform: uppercase;
+		}
+
+		tbody tr {
+			transition: background 0.3s ease;
+		}
+
+		tbody tr:hover {
+			background-color: #f0f0f0;
+		}
+
+		tbody td {
+			padding: 10px;
+			/* Adjusted padding for smaller font size */
+			border-bottom: 1px solid #ddd;
+		}
+
+		/* Responsive Styles */
+		@media (max-width: 768px) {
+			table {
+				border: 0;
+			}
+
+			thead {
+				display: none;
+			}
+
+			tbody,
+			tbody tr,
+			tbody td {
+				display: block;
+				width: 100%;
+				box-sizing: border-box;
+				border-bottom: 1px solid #ddd;
+			}
+
+			tbody tr {
+				margin-bottom: 15px;
+				padding: 10px;
+				background-color: #fff;
+			}
+
+			tbody td {
+				display: flex;
+				justify-content: space-between;
+				padding: 10px;
+				border-top: 1px solid #ddd;
+			}
+
+			tbody td::before {
+				content: attr(data-label);
+				font-weight: 600;
+				margin-right: 10px;
+			}
+		}
+	</style>
 </head>
 
 <body>
@@ -115,13 +240,379 @@
 							They have a 'presence' which feels right.</p>
 					</div>
 				</div>
+				<br />
 				<div class="col-lg-6 col-md-6 col-xs-12">
-					<div class="right-content">
-						<div class="thumb">
-							<a rel="nofollow"></a>
-							<img src="images/logominitok.jpeg" alt="">
+					<section>
+						<!--for demo wrap-->
+						<h1>Fixed Table header</h1>
+						<br />
+						<div class="tbl-header">
+							<div class="table-container">
+								<table class="table table-bordered" id="filterTable" width="100%">
+									<thead>
+										<tr class="text-center"
+											style="color:black; background-color:gray; color:white;">
+											<th rowspan="2" class="first-col sticky-col"
+												style="min-width: 250px; text-align: center; vertical-align: middle;">
+												Warehouse</th>
+											<th rowspan="2" hidden>regional</th>
+											<th rowspan="2" hidden>witel</th>
+											<th rowspan="2" style="text-align: center; vertical-align: middle;"
+												style="max-width:70px" hidden>Minimum Qty</th>
+											<th colspan="2">Stock SCMT</th>
+											<th colspan="2">GAP Stock</th>
+											<th colspan="2">Kebutuhan</th>
+											<th colspan="2">Minimum Stock Requirement Retail</th>
+											<th colspan="2">On Delivery</th>
+										</tr>
+										<tr class="text-center" style="background-color:gray; color:white;">
+											<!-- <th  colspan="4" ></th> -->
+											<th style="text-align: center; vertical-align: middle;">Total
+												Retail</th>
+											<th style="text-align: center; vertical-align: middle;">Total
+												Premium</th>
+
+											<th style="max-width:100px; text-align: center; vertical-align: middle;">
+												Total Retail</th>
+											<th style="max-width:100px; text-align: center; vertical-align: middle;">
+												Total Premium</th>
+
+											<th style="max-width:100px; text-align: center; vertical-align: middle;">
+												Total Retail</th>
+											<th style="max-width:100px; text-align: center; vertical-align: middle;">
+												Total Premium</th>
+
+											<th style="max-width:100px; text-align: center; vertical-align: middle;">
+												Total Retail</th>
+											<th style="max-width:100px; text-align: center; vertical-align: middle;">
+												Total Premium</th>
+
+											<th style="max-width:100px; text-align: center; vertical-align: middle;">
+												Total Retail</th>
+											<th style="max-width:100px; text-align: center; vertical-align: middle;">
+												Total Premium</th>
+										</tr>
+									</thead>
+									<tbody id="tableBiasa-body">
+										<tr>
+											<td value="" class="first-col sticky-col"
+												style="background-color:gray; color:white; font-weight: bold;">
+												<a style="text-decoration:none; color: white; font-weight: bold; cursor: pointer;"
+													href="https://minitok.scmt-telkom.com/rekap_delivery/Witel/WH TR TREG1">WH
+													TR TREG1</a>
+											</td>
+											<td hidden>WH TR TREG1</td>
+											<td hidden>WH TR TREG1</td>
+											<td hidden>8.380</td>
+
+											<div class="text-center">
+												<td>1.755</td>
+												<td>2.684</td>
+
+												<td class="blink-red ">
+													<span>-2.865</span>
+												</td>
+
+												<td class="blink-yellow ">
+													<span>-1.076</span>
+												</td>
+
+												<td>
+													4.460 </td>
+												<td>
+													2.980 </td>
+
+												<td>4.620</td>
+												<td>3.760</td>
+
+												<td><a onClick='setOnDelivery("WH TR TREG1","retail")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">0</a>
+												</td>
+												<td><a onClick='setOnDelivery("WH TR TREG1","premium")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">1.736</a>
+												</td>
+											</div>
+										</tr>
+										<tr>
+											<td value="" class="first-col sticky-col"
+												style="background-color:gray; color:white; font-weight: bold;">
+												<a style="text-decoration:none; color: white; font-weight: bold; cursor: pointer;"
+													href="https://minitok.scmt-telkom.com/rekap_delivery/Witel/WH TR TREG2">WH
+													TR TREG2</a>
+											</td>
+											<td hidden>WH TR TREG2</td>
+											<td hidden>WH TR TREG2</td>
+											<td hidden>11.095</td>
+
+											<div class="text-center">
+												<td>635</td>
+												<td>5.388</td>
+
+												<td class="blink-red ">
+													<span>-5.560</span>
+												</td>
+
+												<td class=" blink-green ">
+													<span>488</span>
+												</td>
+
+												<td>
+													6.920 </td>
+												<td>
+													2.820 </td>
+
+												<td>6.195</td>
+												<td>4.900</td>
+
+												<td><a onClick='setOnDelivery("WH TR TREG2","retail")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">0</a>
+												</td>
+												<td><a onClick='setOnDelivery("WH TR TREG2","premium")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">1.514</a>
+												</td>
+											</div>
+										</tr>
+										<tr>
+											<td value="" class="first-col sticky-col"
+												style="background-color:gray; color:white; font-weight: bold;">
+												<a style="text-decoration:none; color: white; font-weight: bold; cursor: pointer;"
+													href="https://minitok.scmt-telkom.com/rekap_delivery/Witel/WH TR TREG3">WH
+													TR TREG3</a>
+											</td>
+											<td hidden>WH TR TREG3</td>
+											<td hidden>WH TR TREG3</td>
+											<td hidden>7.035</td>
+
+											<div class="text-center">
+												<td>1.431</td>
+												<td>1.893</td>
+
+												<td class="blink-red ">
+													<span>-2.569</span>
+												</td>
+
+												<td class="blink-yellow ">
+													<span>-1.142</span>
+												</td>
+
+												<td>
+													3.980 </td>
+												<td>
+													1.920 </td>
+
+												<td>4.000</td>
+												<td>3.035</td>
+
+												<td><a onClick='setOnDelivery("WH TR TREG3","retail")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">0</a>
+												</td>
+												<td><a onClick='setOnDelivery("WH TR TREG3","premium")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">1.203</a>
+												</td>
+											</div>
+										</tr>
+										<tr>
+											<td value="" class="first-col sticky-col"
+												style="background-color:gray; color:white; font-weight: bold;">
+												<a style="text-decoration:none; color: white; font-weight: bold; cursor: pointer;"
+													href="https://minitok.scmt-telkom.com/rekap_delivery/Witel/WH TR TREG4">WH
+													TR TREG4</a>
+											</td>
+											<td hidden>WH TR TREG4</td>
+											<td hidden>WH TR TREG4</td>
+											<td hidden>6.340</td>
+
+											<div class="text-center">
+												<td>2.335</td>
+												<td>1.984</td>
+
+												<td class="blink-yellow ">
+													<span>-1.265</span>
+												</td>
+
+												<td class="blink-yellow ">
+													<span>-756</span>
+												</td>
+
+												<td>
+													3.360 </td>
+												<td>
+													1.900 </td>
+
+												<td>3.600</td>
+												<td>2.740</td>
+
+												<td><a onClick='setOnDelivery("WH TR TREG4","retail")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">0</a>
+												</td>
+												<td><a onClick='setOnDelivery("WH TR TREG4","premium")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">920</a>
+												</td>
+											</div>
+										</tr>
+										<tr>
+											<td value="" class="first-col sticky-col"
+												style="background-color:gray; color:white; font-weight: bold;">
+												<a style="text-decoration:none; color: white; font-weight: bold; cursor: pointer;"
+													href="https://minitok.scmt-telkom.com/rekap_delivery/Witel/WH TR TREG5">WH
+													TR TREG5</a>
+											</td>
+											<td hidden>WH TR TREG5</td>
+											<td hidden>WH TR TREG5</td>
+											<td hidden>12.520</td>
+
+											<div class="text-center">
+												<td>6.368</td>
+												<td>5.376</td>
+
+												<td class="blink-yellow ">
+													<span>-1.037</span>
+												</td>
+
+												<td class=" blink-green ">
+													<span>261</span>
+												</td>
+
+												<td>
+													6.500 </td>
+												<td>
+													2.900 </td>
+
+												<td>7.405</td>
+												<td>5.115</td>
+
+												<td><a onClick='setOnDelivery("WH TR TREG5","retail")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">0</a>
+												</td>
+												<td><a onClick='setOnDelivery("WH TR TREG5","premium")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">1.230</a>
+												</td>
+											</div>
+										</tr>
+										<tr>
+											<td value="" class="first-col sticky-col"
+												style="background-color:gray; color:white; font-weight: bold;">
+												<a style="text-decoration:none; color: white; font-weight: bold; cursor: pointer;"
+													href="https://minitok.scmt-telkom.com/rekap_delivery/Witel/WH TR TREG6">WH
+													TR TREG6</a>
+											</td>
+											<td hidden>WH TR TREG6</td>
+											<td hidden>WH TR TREG6</td>
+											<td hidden>7.910</td>
+
+											<div class="text-center">
+												<td>8.831</td>
+												<td>4.768</td>
+
+												<td class=" bgc-green  ">
+													4.186 </td>
+
+												<td class=" blink-green ">
+													<span>1.503</span>
+												</td>
+
+												<td>
+													2.200 </td>
+												<td>
+													1.620 </td>
+
+												<td>4.645</td>
+												<td>3.265</td>
+
+												<td><a onClick='setOnDelivery("WH TR TREG6","retail")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">0</a>
+												</td>
+												<td><a onClick='setOnDelivery("WH TR TREG6","premium")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">920</a>
+												</td>
+											</div>
+										</tr>
+										<tr>
+											<td value="" class="first-col sticky-col"
+												style="background-color:gray; color:white; font-weight: bold;">
+												<a style="text-decoration:none; color: white; font-weight: bold; cursor: pointer;"
+													href="https://minitok.scmt-telkom.com/rekap_delivery/Witel/WH TR TREG7">WH
+													TR TREG7</a>
+											</td>
+											<td hidden>WH TR TREG7</td>
+											<td hidden>WH TR TREG7</td>
+											<td hidden>7.365</td>
+
+											<div class="text-center">
+												<td>5.064</td>
+												<td>2.552</td>
+
+												<td class=" blink-green ">
+													<span>79</span>
+												</td>
+
+												<td class="bgc-yellow  ">
+													-153 </td>
+
+												<td>
+													3.720 </td>
+												<td>
+													1.480 </td>
+
+												<td>4.985</td>
+												<td>2.705</td>
+
+												<td><a onClick='setOnDelivery("WH TR TREG7","retail")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">0</a>
+												</td>
+												<td><a onClick='setOnDelivery("WH TR TREG7","premium")'
+														data-toggle='modal' data-target='#onDeliveryModal'
+														style="cursor: pointer; color:grey;">910</a>
+												</td>
+											</div>
+										</tr>
+										<tr style="font-weight: bold; background-color:gray; color:white;">
+											<td value="" class="sticky-col first-col text-center"
+												style="background-color:gray; color:white;">
+												<div hidden>Z</div>Total
+											</td>
+											<td hidden></td>
+											<td hidden></td>
+											<td hidden>60.645</td>
+
+											<div class="text-center">
+												<td>26.419</td>
+												<td>24.645</td>
+
+												<td>-9.031</td>
+												<td>-875</td>
+
+												<td>31.140</td>
+												<td>15.620</td>
+
+												<td>35.450</td>
+												<td>25.520</td>
+
+												<td><a href="" style="color:white;">0 </a></td>
+												<td><a href="" style="color:white;">8.433 </a></td>
+											</div>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
-					</div>
+					</section>
+
+
+					<!-- follow me template -->
 				</div>
 			</div>
 		</div>
